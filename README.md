@@ -1,7 +1,7 @@
 # replaceNrender
 This is an iClone 7 plugin for the iit bombay convocation project. 
 
-It loads a iClone master project for the convocation, **replaces** the student avatar in it with avatars selected from a list, customizes the accessories on the avatar as per file name and then **renders** the project.
+It loads a iClone master project for the convocation, **replaces** the student avatar in it with avatars selected from a list, customizes the accessories on the avatar as per filename based customizations, and then **renders** the project.
 
 ## To download the script
 Use
