@@ -22,7 +22,7 @@ The `replaceNrender-glass-batch.py` script does a batch render while taking care
 2. To load and render the scene with new student avatars -
 - Click on **Find Scarf** in the plugin window, locate and select the folder containing the scarf textures.
 - This folder must have the files `blue.png`, `green.png` and `red.png` for the blue, green and red scarf textures. 
-- Make sure there are two images called `black.png` and `white.png` which are of size *1024x1024* in the same folder. These are grayscale, single channel, all black and all white images respectively.
+- Make sure there are two images called `black.png` and `white.png` which are of size *1024x1024* in the same folder. These are grayscale, single channel, all black and all white images respectively. Samples of thes images are there in the `opacity-maps` folder of this repository.
 - Make sure all the iAvatar files to be rendered are named as `<rollnumber>-<scarfcolour>-glass` or `<rollnumber>-<scarfcolour>-noglass`, e.g., `170502009-green-noglass`.
 - Locate a CSV file by clicking **Find CSV** that contains the list of avatar files to be rendered. This file should be in the same folder as the iAvatar files.
 - It should contain one filename on every line, without the file extension.
