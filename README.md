@@ -25,9 +25,9 @@ The `replaceNrender-glass-batch.py` script does a batch render while taking care
 - Click on **Find Scarf** in the plugin window, locate and select the folder containing the scarf textures.
 - This folder must have the files `blue.png`, `green.png` and `red.png` for the blue, green and red scarf textures. 
 - Make sure there are two images called `black.png` and `white.png` which are of size *1024x1024* in the same folder. These are grayscale, single channel, all black and all white images respectively. Samples of thes images are there in the `opacity-maps` folder of this repository.
-- Make sure all the iAvatar files to be rendered are named as `<rollnumber>-<scarfcolour>-glass` or `<rollnumber>-<scarfcolour>-noglass`, e.g., `170502009-green-noglass`.
+- Make sure all the iAvatar files to be rendered are named as `<rollnumber>-<scarfcolour>-glass.iavatar` or `<rollnumber>-<scarfcolour>-noglass.iavatar`, e.g., `170502009-green-noglass.iavatar`.
 - Locate a CSV file by clicking **Find CSV** that contains the list of avatar files to be rendered. This file should be in the same folder as the iAvatar files.
-- It should contain one filename on every line, without the file extension.
+- It should contain one filename on every line, with the file extension and the full relative path from the location of the CSV file to the iAvatar file.
 - The status box should update and show the number of avatar filenames found in the CSV file.
 - **Batch Render all iAvatar files** button should now be enabled.
 - Click this button and all the iAavatar files will be imported one by one and the project will be rendered for each.
