@@ -160,7 +160,7 @@ def do_batch_render():
 
 	for i in range(len(avatar_list_torender)):
 		ui["status-box"].insertPlainText("Loading iAvatar : "+avatar_list_torender[i]+"\n")
-		filename=avatar_file_path+"/"+avatar_list_torender[i]+".iavatar"
+		filename=avatar_file_path+"/"+avatar_list_torender[i]
 		current_avatar = RLPy.RFileIO.LoadObject(filename)
 		
 		if (ui["scarf-combo"].currentIndex() != 0):
