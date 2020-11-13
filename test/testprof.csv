@@ -1,10 +1,13 @@
-Rollno,gender, weight, height, uttaria, specs
-160010026,m,over,equal,green,glass
-160010033,f,normal,equal,green,noglass
-160020048,f,under,equal,green,glass
-160020107,m,under,equal,green,noglass
-173059005,f,over,short,blue,noglass
-183070056,f,normal,short,blue,noglass
-183074016,m,over,equal,blue,noglass
-183350007,m,normal,equal,blue,noglass
-183350013,f,normal,equal,blue,noglass
+RollNo,Gender,Weight,Height,uttaria,specs
+160010028,f,normal,equal,green,glass
+183020049,f,normal,short,blue,glass
+185030010,f,normal,tall,blue,noglass
+15D110026,f,under,tall,green,glass
+160010030,f,under,equal,green,noglass
+134040003,f,under,short,red,noglass
+160040028,m,normal,equal,green,glass
+160040047,m,normal,short,green,glass
+160040048,m,normal,tall,green,glass
+140020102,m,under,short,green,noglass
+160040061,m,under,tall,green,noglass
+133074009,m,under,equal,red,glass
