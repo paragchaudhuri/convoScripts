@@ -5,27 +5,46 @@ import csv
 import os.path
 import shutil
 
+from contextlib import ExitStack
 
-rootDir="../runs/convo2020/"
+
+rootDir="../runs/convo2020"
 
 rootDir = os.path.expanduser(rootDir)
 
-imageDir="fronts"
+imageDir="front-images"
 templateDir="templates"
 avataroutputDir="avatars"
 
-profilefile=rootDir + 'testprof.csv'
+profilefile=os.path.join(rootDir , 'testprof.csv')
 
 genderdict = { 'f': 'female', 'm':'male'}
 
-listfile = os.path.join(rootDir + avataroutputDir , "allavatars.csv")
+animTemplates = ['short', 'equal', 'tall']
 
-with open(profilefile, 'r') as ifp, open(listfile,'w') as lstfp:
+# for a in animTemplates:
+#     listfiles[i] = os.path.join(rootDir + avataroutputDir , a, "allavatars.csv")
+
+lstfp = {}
+
+with ExitStack() as stack:
+    # All opened files will automatically be closed at the end of
+    # the with statement, even if attempts to open files later
+    # in the list raise an exception
+    # https://stackoverflow.com/a/53363923/2601819
+    ifp = stack.enter_context(open(profilefile, 'r'))
+    for a in animTemplates:
+        rollDir = os.path.join(rootDir , avataroutputDir , a)
+        os.makedirs(rollDir,exist_ok=True)
+        listfile = os.path.join(rollDir, "allavatars.csv")
+        lstfp[a] =  stack.enter_context(open(listfile, 'w'))
+        
+
     csvr = csv.reader(ifp)
     next(csvr) # gobble one header line
 
     for row in csvr:
-        rollno = row[0]
+        rollno = row[0].lower()
         gender = row[1]
         bodywt = row[2]
         height = row[3]
@@ -34,7 +53,7 @@ with open(profilefile, 'r') as ifp, open(listfile,'w') as lstfp:
 
         frontimg=rollno + "_front.jpg"
 
-        imgpath = os.path.join(rootDir+imageDir, frontimg)
+        imgpath = os.path.join(rootDir, imageDir, frontimg)
 
         #if os.path.isfile(imgpath) and os.access(imgpath, os.R_OK):
         if not os.path.exists(imgpath):
@@ -44,23 +63,24 @@ with open(profilefile, 'r') as ifp, open(listfile,'w') as lstfp:
             template= genderdict[gender] + "_" + bodywt + \
                 "_" + height + '.iAvatar' 
 
-            src  = os.path.join(rootDir+templateDir, template)
+            src  = os.path.join(rootDir, templateDir, template)
             
             if os.path.exists(src):
-                destdir = os.path.join(rootDir+avataroutputDir, rollno)
+                destdir = os.path.join(rootDir, avataroutputDir, height, rollno)
                 os.makedirs(destdir,exist_ok=True)
 
                 # copy front facing photo
                 shutil.copy(imgpath,destdir)
 
                 avatar = rollno + "-" + ucolor + '-' + specs + '.iAvatar'
-                print(frontimg, template, avatar, destdir)
+                #print(frontimg, template, avatar, destdir)
+                print("Copying for", rollno, template)
                 dest = os.path.join(destdir,avatar)
 
                 # copy the template avatar
                 shutil.copy(src,dest)
 
-                lstfp.writelines(rollno + '/' + avatar+'\n')
+                lstfp[height].writelines(rollno + '/' + avatar+'\n')
             else:
                 print("%s does not exist or not readable" % src)
 
