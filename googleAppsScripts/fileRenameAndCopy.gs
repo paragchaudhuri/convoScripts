@@ -3,26 +3,27 @@ function renameAndCopyFileByUrl() {
 
   //Don't use the Form Response sheet directly - use something that holds a copy of the Form Responses
 
-  //Spreadsheet with renamed Student Data
+  //1. Spreadsheet with renamed Student Data
   var spreadsheetId = 'ADD-THE-ID-OF-THE-SPREADSHEET-THAT-WILL-CONTAIN-THE-RENAMED-STUDENT-DATA';
   var ss = SpreadsheetApp.openById(spreadsheetId);
   SpreadsheetApp.setActiveSpreadsheet(ss);
   
 
-  //The spreadsheet must have a copy of the original form responses in a sheet called "Original"
+  //2. The spreadsheet must have a copy of the original form responses in a sheet called "Original"
   var sheet = ss.getSheetByName('Original');
 
-  //Create a sheet called "Renamed" - here we will put the urls to renamed files
+  //3. Create a sheet called "Renamed" - here we will put the urls to renamed files
   var renameSheet = ss.getSheetByName('Renamed');
   
-  // Get a specific range - omitting the header. 
-  // Remember the header is row 1
+  //Get a specific range - omitting the header. 
+  //Remember the header is row 1
 
-  //SET START ROW
+  //4. SET START ROW
   var startRow = _SET_THIS_;  
-  //SET END ROW
+  //5. SET END ROW
   var endRow = _SET_THIS_;
 
+  //6. VERIFY THAT data is columns A to L in the original sheet (Column A will become column number 0 below in the for loop). If not modify cellRange accordingly. 
   var cellRange = 'A'+startRow+':L'+endRow;
 
   //This is jsut for debugging if needed
@@ -39,11 +40,11 @@ function renameAndCopyFileByUrl() {
   
 
   //Google Drive refers to files and folders by IDs
-  //Add the ID for the folder that will contain the renamed files - Note this is the DESTINATION folder
+  //7. Add the ID for the folder that will contain the renamed files - Note this is the DESTINATION folder
   var frontDataFolder = DriveApp.getFolderById('SET-THE-ID-OF-DESTINATION-FOLDER');
 
-  //This is the column number in the "Original" sheet that has the url of the original file  
-  var frontUrlColumn = 10;
+  //8. This is the column number in the "Original" sheet that has the url of the original file - SET THIS 
+  var frontUrlColumn = _SET_THIS_;
   
   //These are helper functions
   function getIdFromUrl(url) { return url.match(/[-\w]{25,}$/); }
@@ -55,9 +56,9 @@ function renameAndCopyFileByUrl() {
     for (var row = 0; row < values.length; row++) {
       if (values[row][0] !== "") {
             
-        //Change the column number to whichever column the ROLL NUMBER is stored in
+        //9. Change the column number to whichever column the ROLL NUMBER is stored in
         //Column numbers start from 0 here
-        var rollnumber=values[row][-FILL-ROLL-NUMBER-COLUMN-];
+        var rollnumber=values[row][_SET_THIS_];
         
         var filename_front=rollnumber+"_front.jpg";
         
