@@ -53,21 +53,18 @@ function renameAndCopyFileByUrl() {
     Logger.log('No data found.');
   } else {
     for (var row = 0; row < values.length; row++) {
-      // Print columns A and E, which correspond to indices 0 and 4.
       if (values[row][0] !== "") {
-        
-        //var timestamp=values[row][0];
-        //var email=values[row][1];
-        //var name=values[row][2];
-
+            
         //Change the column number to whichever column the ROLL NUMBER is stored in
+        //Column numbers start from 0 here
         var rollnumber=values[row][-FILL-ROLL-NUMBER-COLUMN-];
         
         var filename_front=rollnumber+"_front.jpg";
         
         var urlFront = values[row][frontUrlColumn];
         var idFront = getIdFromUrl(urlFront);
-        
+
+        //This is only for debugging and can be commented out
         Logger.log('Roll Number: %s, Url: %s, Id: %s', rollnumber, urlFront, idFront);
         
         var frontFile = DriveApp.getFileById(idFront);
